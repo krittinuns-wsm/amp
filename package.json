@@ -20,7 +20,8 @@
     "lodash": "^4.17.11",
     "pug": "^2.0.3",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react-dom": "^16.8.4",
+    "showdown": "^1.9.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

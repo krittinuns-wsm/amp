@@ -1,6 +1,9 @@
 import contentfulClient from '../utils/contentfulClient'
 import _ from 'lodash'
 import dateFormat from 'dateformat'
+import showdown from 'showdown'
+
+const markDownConverter = new showdown.Converter()
 
 async function getPost (slug) {
   try {
@@ -14,8 +17,8 @@ async function getPost (slug) {
 
     if (!_.isEmpty(result)) {
       // console.log(result.items[0].fields)
-
       const { title, description, image, authors, categories, publishDate, content } = result.items[0].fields
+
       const data = {
         title: title,
         description: description,
@@ -23,7 +26,7 @@ async function getPost (slug) {
         author: authors[0].fields.name,
         categories: categories[0].fields.name,
         publishDate: dateFormat(new Date(publishDate), 'mmmm d, yyyy'),
-        content: content
+        content: markDownConverter.makeHtml(content)
       }
       return data
     }
