@@ -1,4 +1,24 @@
 .header
   //- <a href="/baby/" class="header-tags__link" target="_blank">Baby</a>
+  a(href='/baby/' target='_blank') #{categories}
+  h2= title
+
   .share
-  h1= title
+    amp-social-share(
+      type= 'facebook'
+      data-param-app_id= '000000000000'
+    )
+    amp-social-share(
+      type= 'twitter'
+    )
+    amp-social-share(
+      type= 'pinterest'
+      data-param-media= 'https://ampbyexample.com/img/amp.jpg'
+    )
+    amp-social-share(
+      type= 'email'
+    )
+  
+  h3= `By ${author}`
+  h3= publishDate
+    
