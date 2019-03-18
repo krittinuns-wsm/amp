@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 import express from 'express'
-import articlePage from './pages/article'
+import post from "./pages/post";
 import _ from 'lodash'
 
 dotenv.config()
@@ -13,14 +13,15 @@ app.get('/*/amp', async (req, res) => {
     const urlArray = req.path.split("/")
     const slug = urlArray[urlArray.length-2]
 
-    const article = await articlePage(slug)
+    const result = await post(slug)
 
-    if(!_.isEmpty(article)){
-      const bodyHTML = {
-        title: 'TopTest',
-        message: article.fields.title
+    if(!_.isEmpty(result)){
+      const data = {
+        title: result.title,
+        description: result.description,
+        image: result.image.fields.file.url
       }
-      res.render('article', bodyHTML)
+      res.render('post', data)
     }
     else {
       // no article for requesting slug

@@ -1,7 +1,7 @@
 import contentfulClient from '../utils/contentfulClient'
 
-async function articlePage(slug) {
-  try{
+async function getPost (slug) {
+  try {
     const result = await contentfulClient.getEntries({
       content_type: 'post',
       select:
@@ -10,12 +10,10 @@ async function articlePage(slug) {
       'fields.slug': slug
     })
 
-    return result.items[0]
-  }
-  catch(error)
-  {
+    return result.items[0].fields
+  } catch (error) {
     console.error(error)
   }
 }
 
-export default articlePage
+export default getPost
