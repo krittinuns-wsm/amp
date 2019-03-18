@@ -1,6 +1,6 @@
 import contentfulClient from '../utils/contentfulClient'
 
-async function getArticle(slug) {
+async function articlePage(slug) {
   try{
     const result = await contentfulClient.getEntries({
       content_type: 'post',
@@ -18,4 +18,4 @@ async function getArticle(slug) {
   }
 }
 
-export default getArticle
+export default articlePage
