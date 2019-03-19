@@ -25,7 +25,8 @@ async function getPost (slug) {
       mainCategoryLink: `${ORIGINAL_SITE}/${categories[0].fields.slug}`,
       publishDate: dateFormat(new Date(publishDate), 'mmmm d, yyyy'),
       content: markDownConverter.makeHtml(content),
-      galleryItems: gallery ? parseGallery(gallery) : null
+      galleryItems: gallery ? parseGallery(gallery) : null,
+      videoID: videoID
     }
 
     // set render template
