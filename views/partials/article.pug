@@ -1,8 +1,5 @@
 .article
 
-  //- DESCRIPTION
-  p= description
-
   //- LEAD IMAGE
   amp-img(
     src= image
@@ -10,7 +7,7 @@
     height= '600'
     layout= 'responsive'
   )
-  
+
   //- CONTENT
-  //- != is pug's interpolation, this will escaped html tags
+  //- != pug's interpolation, escape html tags
   != content

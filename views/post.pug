@@ -28,4 +28,11 @@ html(amp, lang="en")
   body
     .content
       include partials/header.pug
-      include partials/article.pug
+
+      case template
+        when 'article'
+          include partials/article.pug
+        when 'gallery'
+          include partials/gallery.pug
+        when 'video'
+          include partials/video.pug

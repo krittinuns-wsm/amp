@@ -1,0 +1,21 @@
+.gallery
+
+  //- GALLERY ITEMS
+  each gallery in galleryItems
+
+    //- IMAGE
+    amp-img(
+      src= gallery.image.fields.file.url
+      width= '600'
+      height= '600'
+      layout= 'responsive'
+    )
+
+    //- TITLE
+    h3= gallery.title
+
+    //- CONTENT
+    //- != pug's interpolation, escape html tags
+    != gallery.content
+
+

@@ -2,8 +2,11 @@
   
   //- CATEGORIES 
   a(href=mainCategoryLink target='_blank') #{mainCategory}
+
+  //- TITLE
   h2= title
 
+  //- SOCIAL SHARE
   .share
     amp-social-share(
       type= 'facebook'
@@ -20,6 +23,9 @@
       type= 'email'
     )
   
+  //- AUTHOR
   h3= `By ${author}`
+
+  //- PUBLISH DATE
   h3= publishDate
     
