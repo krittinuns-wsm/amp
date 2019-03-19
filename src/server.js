@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 import express from 'express'
 import Post from "./pages/post";
 import _ from 'lodash'
+import { ORIGINAL_SITE } from './configs/site'
 
 dotenv.config()
 const app = express();
@@ -14,22 +15,15 @@ app.get('/*/amp', async (req, res) => {
     const slug = urlArray[urlArray.length-2]
 
     const data = await Post(slug)
-
-    if(!_.isEmpty(data)) {
-      res.render('post', data)
-    }
-    else {
-      // no article for requesting slug
-      return res.status(404).send({ message: 'Route'+req.url+' Not found.' });
-    }
+    res.render('post', data)
   } catch (error) {
-    console.error(error)
+    res.redirect(ORIGINAL_SITE)
   }  
 })
 
 // 404
 app.use(function(req, res, next) {
-  return res.status(404).send({ message: 'Route'+req.url+' Not found.' });
+  return res.status(404).send({ message: 'Route'+req.url+' Not found.' })
 });
 
 // 500 - Any server error
@@ -37,4 +31,4 @@ app.use(function(err, req, res, next) {
   return res.status(500).send({ error: err });
 });
 
-app.listen(3000, () => console.log('listening on port 3000'));
+app.listen(3000, () => console.log('listening on port 3000'))

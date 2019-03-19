@@ -16,26 +16,21 @@ async function getPost (slug) {
       'fields.slug': slug
     })
 
-    if (!_.isEmpty(result)) {
-      // console.log(result.items[0].fields)
-      const { title, description, image, authors, categories, publishDate, content } = result.items[0].fields
-
-      const data = {
-        title: title,
-        description: description,
-        image: image.fields.file.url,
-        author: authors[0].fields.name,
-        mainCategory: categories[0].fields.name,
-        mainCategoryLink: `https://${ORIGINAL_SITE}/${categories[0].fields.slug}`,
-        publishDate: dateFormat(new Date(publishDate), 'mmmm d, yyyy'),
-        content: markDownConverter.makeHtml(content)
-      }
-      return data
+    const { title, description, image, authors, categories, publishDate, content } = result.items[0].fields
+    const data = {
+      title: title,
+      description: description,
+      image: image.fields.file.url,
+      author: authors[0].fields.name,
+      mainCategory: categories[0].fields.name,
+      mainCategoryLink: `${ORIGINAL_SITE}/${categories[0].fields.slug}`,
+      publishDate: dateFormat(new Date(publishDate), 'mmmm d, yyyy'),
+      content: markDownConverter.makeHtml(content)
     }
-
-    return null
+    return data
   } catch (error) {
-    console.error(error)
+    console.log('>>> [post.js] error : ', error)
+    throw error
   }
 }
 
