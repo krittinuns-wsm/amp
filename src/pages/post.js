@@ -29,8 +29,8 @@ async function getPost (slug) {
     }
 
     // set render template
-    if (gallery) data.template = 'gallery'
-    else if (videoID) data.template = 'video'
+    if (!_.isEmpty(gallery)) data.template = 'gallery'
+    else if (!_.isEmpty(videoID)) data.template = 'video'
     else data.template = 'article'
 
     return data
@@ -40,11 +40,11 @@ async function getPost (slug) {
   }
 }
 
-function parseGallery (gallery) {
+function parseGallery (object) {
   // ignore sys
-  const galleryItems = gallery.map(gallery => gallery.fields)
+  const galleryItems = _.map(object, gallery => gallery.fields)
   // parse markdown content
-  galleryItems.forEach(item => {
+  _.forEach(galleryItems, item => {
     item.content = markDownConverter.makeHtml(item.content)
   })
   return galleryItems
