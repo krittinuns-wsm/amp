@@ -22,7 +22,6 @@ app.get('/*/amp', async (req, res) => {
       // no article for requesting slug
       return res.status(404).send({ message: 'Route'+req.url+' Not found.' });
     }
-    
   } catch (error) {
     console.error(error)
   }  

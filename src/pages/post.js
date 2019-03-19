@@ -2,6 +2,7 @@ import contentfulClient from '../utils/contentfulClient'
 import _ from 'lodash'
 import dateFormat from 'dateformat'
 import showdown from 'showdown'
+import { ORIGINAL_SITE } from '../configs/site'
 
 const markDownConverter = new showdown.Converter()
 
@@ -24,7 +25,8 @@ async function getPost (slug) {
         description: description,
         image: image.fields.file.url,
         author: authors[0].fields.name,
-        categories: categories[0].fields.name,
+        mainCategory: categories[0].fields.name,
+        mainCategoryLink: `https://${ORIGINAL_SITE}/${categories[0].fields.slug}`,
         publishDate: dateFormat(new Date(publishDate), 'mmmm d, yyyy'),
         content: markDownConverter.makeHtml(content)
       }
